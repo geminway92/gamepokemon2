@@ -1,4 +1,12 @@
 html, body {
-    background-color: #f1f1f1;
+    background-color: rgb(223, 223, 37);
     margin: 0px;
+}
+
+
+
+@media (min-width: 330px) {
+    html, body {
+        background-color: rgb(212, 211, 211);
+    }
 }

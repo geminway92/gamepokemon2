@@ -3,7 +3,8 @@
     <ul>
       <li v-for="pokemon in pokemons"
           :key="pokemon.id"
-          @click="$emit( 'selection', pokemon.id )">
+          @click="$emit( 'selection', pokemon.id )"
+          class="list-individual">
           {{ pokemon.name }}
       </li>
     </ul>
@@ -33,17 +34,36 @@ li {
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  margin-left: -200px;
   margin-bottom: 10px;
   width: 250px;
 }
 
 li:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgb(192, 192, 51);
 }
 
 .options-container {
   display: flex;
   justify-content: center;
   height: 300%;
+  margin-top: 180px;
 }
+
+
+@media (max-width: 800px) {
+  ul {
+    margin: 10px 0px 0px -90px;
+  }
+}
+
+@media (max-width: 400px) {
+  ul {
+    margin-right: -265px;
+    margin-bottom: 20px;
+  }
+}
+
+
+
 </style>

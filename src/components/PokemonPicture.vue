@@ -8,7 +8,7 @@
     <img v-else
       :src="imgSrc"
       class="fade-in"
-      nalt="pokemon"/>
+      alt="pokemon"/>
     
   </div>
 </template>
@@ -47,6 +47,7 @@ export default {
 }
 img {
   height: 200px;
+  margin-left: -210px;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -58,4 +59,18 @@ img {
 }
 
 
+@media (max-width: 800px) {
+  
+  img {
+  height: 120px;
+  margin-top: 40px;
+  margin-left: -290px;
+  }
+}
+
+@media (max-width: 400px) {
+  img {
+    margin-left: -325px;
+  }
+}
 </style>
