@@ -1,6 +1,7 @@
-html {
-    position: relative;
+html,body {
     background-color: rgb(223, 223, 37);
+    width: 100vw;
+    height: 100vw;
 }
 
 

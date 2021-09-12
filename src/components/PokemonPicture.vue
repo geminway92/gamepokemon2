@@ -47,7 +47,6 @@ export default {
 }
 img {
   height: 80%;
-  margin-right: 200px;
   margin-top: 5%;
   user-select: none;
   -moz-user-select: none;

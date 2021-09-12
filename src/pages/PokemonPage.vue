@@ -1,68 +1,74 @@
 <template> 
-  <div class="gameboy">
-    <div class="screen-black"></div>
-    <div class="screen-cristal"></div>
 
-    <div class="point-live">
-      <div class="point">
-        <PokemonPoint
-          :pokemonScore="pokemonPoint"
-        />
-      </div>
-      <div class="live">
-        <PokemonLive
-        :lives="lives"/>  
-        
-      </div>
- 
+<div class="gameboy">
+
+      <ShowPlayer
+    :playerPoint="playerFirebase"
+    :disabledTopPlayer="disabledTopPlayer"
+    :registerPlayer="registerPlayer"/>
+
+  <div class="screen-black"></div>
+  <div class="screen-cristal"></div>
+
+  <div class="point-live">
+    <div class="point">
+      <PokemonPoint
+        :pokemonScore="pokemonPoint"
+      />
     </div>
-
-    <h1 class="wait-message" v-if="!pokemon">Espere por favor...</h1>
-
-    <div class="img-container" v-else>
-      <h1>¿Quién es este pokémon?</h1>
-
-      <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
-    </div>
-    
-    <div v-if="showAnswer">
-        <PokemonAlert
-          :activeColor="activeColor"
-          :message="message"
-          @nextPokemon="nextPokemon(false)"
-          @newGame="nextPokemon(true)"
-          :lives="lives"/>
-      </div>
-
-    <div class="allbuttoms">
-      <div class="directionButtons">
-          <div class="button-left">◀ </div>
-          <div class="button-top">▲</div>
-          <div class="button-right">▶</div>
-          <div class="button-bottom">▼</div>
-          <div class="button-center">⬤</div>
-        </div>
+    <div class="live">
+      <PokemonLive
+      :lives="lives"/>  
       
-        <div class="buttonA">A</div>
-        <div class="buttonB">B</div>
+    </div>
 
-      <PokemonOptions :pokemons="pokemonArr" @selection="checkAnswer($event)" />
+  </div>
 
-      <div class="button-start">
-        <p>START</p>
-      </div>
+  <h1 class="wait-message" v-if="!pokemon">Espere por favor...</h1>
 
-      <div class="button-select">
-            <p>SELECT</p>
-      </div>
+  <div class="img-container" v-else>
+    <h1>¿Quién es este pokémon?</h1>
+
+    <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
   </div>
   
+  <div v-if="showAnswer">
+      <PokemonAlert
+        :activeColor="activeColor"
+        :message="message"
+        @nextPokemon="nextPokemon(false)"
+        @newGame="nextPokemon(true)"
+        :lives="lives"/>
   </div>
 
-  <ShowPlayer
-  :playerPoint="playerFirebase"
-  :disabledTopPlayer="disabledTopPlayer"
-  :registerPlayer="registerPlayer"/>
+  <div class="allbuttoms">
+    <div class="directionButtons">
+        <div class="button-left">◀ </div>
+        <div class="button-top">▲</div>
+        <div class="button-right">▶</div>
+        <div class="button-bottom">▼</div>
+        <div class="button-center">⬤</div>
+      </div>
+    
+      <div class="buttonA">A</div>
+      <div class="buttonB">B</div>
+
+    <PokemonOptions :pokemons="pokemonArr" @selection="checkAnswer($event)" />
+
+    <div class="button-start">
+      <p>START</p>
+    </div>
+
+    <div class="button-select">
+          <p>SELECT</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+  
 
 </template>
 
@@ -204,23 +210,24 @@ export default {
 
 <style scoped>
 
+
 .gameboy {
   position: absolute;
   background-color: rgb(223, 223, 37);
   height: 730px;
   width: 500px;
   border-radius: 1rem;
-  margin: 20px 100px;
-  transform: translate(540px, 10px);
+  margin: 5% 0%;
+  /* transform: translate(630px); */
 }
 
 .point-live {
   display: flex;
   justify-content: space-between;
-  margin-top: 10%;
+  margin-top: 50px;
 }
 .point {
-  margin-left: 10%;
+  margin-left: 50px;
 }
 .live {
   margin-right: 33%;
@@ -231,41 +238,35 @@ export default {
 
 .screen-black {
   position: absolute;
-  width: 80%;
+  width: 400px;
   height: 45%;
   background-color: black;
-  margin-top: 20px;
-  margin-left: 50px;
+  transform: translate(50px, 25px);
 }
 
 .screen-cristal {
   position: absolute;
-  width: 65%;
-  height: 40%;
+  width: 340px;
+  height: 290px;
   background-color: grey;
-  margin-top: 40px;
-  margin-left: 90px;
+  transform: translate(80px, 40px);
 
 }
 
 .img-container {
   position: absolute;
-  margin-top: -100px;
-  margin-left: 22%;
   width: 500px;
 }
 
 .img-container h1 {
   font-size: 100%;
-  margin-top: 25%;
-  margin-left: -210px;
   z-index: 1;
+  margin-right: 15px;
 }
 
 .wait-message {
   position: absolute;
-  margin-top: 10%;
-  margin-left: 25%;
+  margin-left: 100px;
   font-size: 20px;
   z-index: 1;
 }
@@ -365,6 +366,59 @@ export default {
 
 p {
   margin-left: -10%;
+}
+
+@media (min-width: 524px){
+
+.gameboy{
+  width: 500px;
+  height:740px;
+  margin-left: 70px;
+}
+
+}
+
+@media(min-width: 760px) {
+  .gameboy {
+    margin-left: 150px;
+
+  }
+}
+
+@media(min-width: 858px) {
+  .gameboy {
+    margin-left: 180px;
+
+  }
+}
+
+@media(min-width: 966px) {
+  .gameboy {
+    margin-left: 250px;
+
+  }
+}
+
+@media(min-width: 1136px) {
+  .gameboy {
+    margin-left: 300px;
+
+  }
+}
+
+@media(min-width: 1308px) {
+  .gameboy {
+    margin-left: 400px;
+
+  }
+}
+
+@media(min-width: 1408px) {
+  .gameboy {
+    margin-top: 10px;
+    margin-left: 600px;
+
+  }
 }
 
 </style>

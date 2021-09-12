@@ -63,15 +63,16 @@ h1 {
     background-color: grey;
     position: absolute;
     z-index: 1;
-    width: 45vh;
-    height: 37vh;
-    transform: translate(575px, 30px);
-    border: 15px solid black;
+    width: 390px;
+    height: 320px;
+    transform: translate(45px);
+    border: 1px solid black;
+    margin-top: 20px;
 
 }
 
 .show-button-alway-container {
-   transform: translate(850px, 0px);
+   transform: translate(210px, 0px);
    position: absolute;
 }
 
@@ -84,5 +85,7 @@ h1 {
     color: red;
     margin-left: 5%;
 }
+
+
 
 </style>
