@@ -1,9 +1,9 @@
-import pokemonApi from "../api/pokemonApi"
+import pokemonApi from '../api/pokemonApi'
 
 
 
 
-const getPokemons = () => {
+ export const getPokemons = () => {
 
     const pokemonsArr = Array.from( Array(650))
     
@@ -11,7 +11,7 @@ const getPokemons = () => {
 
 }
 
-const getPokemonOptions = async() => {
+ const getPokemonOptions = async() => {
 
     const mixedPokemons = getPokemons().sort( () => Math.random() - 0.5 )
 
@@ -20,7 +20,7 @@ const getPokemonOptions = async() => {
    return pokemons
 }
 
-const getPokemonName = async( [a, b, c, d,] = [] ) => {
+ export const getPokemonName = async( [a, b, c, d,] = [] ) => {
 
     const promiseArr = [
          pokemonApi.get(`${a}`),

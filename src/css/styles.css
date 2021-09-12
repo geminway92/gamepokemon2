@@ -1,6 +1,6 @@
-html, body {
+html {
+    position: relative;
     background-color: rgb(223, 223, 37);
-    margin: 0px;
 }
 
 

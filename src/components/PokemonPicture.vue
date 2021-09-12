@@ -46,8 +46,9 @@ export default {
   height: 200px;
 }
 img {
-  height: 200px;
-  margin-left: -210px;
+  height: 80%;
+  margin-right: 200px;
+  margin-top: 5%;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -59,18 +60,4 @@ img {
 }
 
 
-@media (max-width: 800px) {
-  
-  img {
-  height: 120px;
-  margin-top: 40px;
-  margin-left: -290px;
-  }
-}
-
-@media (max-width: 400px) {
-  img {
-    margin-left: -325px;
-  }
-}
 </style>

@@ -5,4 +5,5 @@ import './css/styles.css'
 import './css/animations.css'
 
 
-createApp(App).mount('#app')
+createApp(App)
+    .mount('#app')

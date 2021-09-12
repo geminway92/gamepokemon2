@@ -1,11 +1,9 @@
-import PokemonPoint from '@/components/PokemonPoint';
 <template>
     <div class="score-container">
-        <h1>PUNTOS</h1>
+        <h1>PUNTOS:</h1>
 
         <div class="scored">
-        <p>{{pokemonScore1}}</p>
-        <p>{{pokemonScore2}}</p>
+        <p>{{pokemonScore}}</p>
 
         </div>
     </div>
@@ -14,22 +12,10 @@ import PokemonPoint from '@/components/PokemonPoint';
 <script>
 export default {
     props: {
-        pokemonScore1: {
+        pokemonScore: {
             type: Number,
             default: 0,
         },
-        pokemonScore2: {
-            type: Number,
-            default: 0,
-        },
-        pokemonScore3: {
-            type: Number,
-            default: 0
-        },
-        showCounter3: {
-            type: Boolean,
-            default: false
-        }
     },
 }
 </script>
@@ -38,41 +24,26 @@ export default {
 
 
 .score-container {
-    position: relative;
-    top: auto;
+    position: absolute;
+    display: flex;
     height: 25%;
-
+    margin-left: 10% ;
+    margin-top: -8px;
 }
 
 .score-container p{
-    display: inline-flex;
-    background-color: rgba(243, 233, 233, 0.856);
-    border: 2px solid white;
-    color: black;
-    font-size: 30px;
-    margin-top: 37px;
+    font-size: 19px;
+ 
 }
 
 .scored {
-    margin: -95px;
+    margin-top: -13px;
+    margin-left: 10px;
     
 }
 .score-container h1 {
-    margin-top: 0px;
-    margin-left: -250px;
+    font-size: 14px;
 }
 
 
-@media (max-width: 800px) {
-    .score-container p {
-        font-size: 20px;
-        margin-top: 68px;
-    }
-
-    .score-container h1 {
-        margin: 10px 150px 0px 0px;
-        font-size: 25px;
-    }
-
-}
 </style>

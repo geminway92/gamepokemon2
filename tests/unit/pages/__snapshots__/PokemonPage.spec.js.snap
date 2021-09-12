@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokemonPage Component debe de hacer match con el snapshot 1`] = `
+<div class="gameboy">
+  <div class="screen-black"></div>
+  <div class="screen-cristal"></div>
+  <pokemon-point-stub pokemonscore1="0" pokemonscore2="0" pokemonscore3="0" showcounter3="false"></pokemon-point-stub>
+  <h1 class="wait-message">Espere por favor...</h1>
+</div>
+`;
+
+exports[`PokemonPage Component debe de hacer match con el snapshot cuando cargan los pokemons 1`] = `
+<div class="gameboy">
+  <div class="screen-black"></div>
+  <div class="screen-cristal"></div>
+  <pokemon-point-stub pokemonscore1="0" pokemonscore2="0" pokemonscore3="0" showcounter3="false"></pokemon-point-stub>
+  <div class="img-container">
+    <h1>¿Quién es este pokémon?</h1>
+    <pokemon-picture-stub pokemonid="1" showpokemon="false"></pokemon-picture-stub>
+    <div class="directionButtons">
+      <div class="button-left">◀ </div>
+      <div class="button-top">▲</div>
+      <div class="button-right">▶</div>
+      <div class="button-bottom">▼</div>
+      <div class="button-center">⬤</div>
+    </div>
+    <div class="buttonA">A</div>
+    <div class="buttonB">B</div>
+    <pokemon-options-stub pokemons="[object Object],[object Object],[object Object],[object Object]"></pokemon-options-stub>
+    <!--v-if-->
+    <div class="button-start"></div>
+    <div class="button-select"></div>
+    <div class="button-select-start">
+      <p>SELECT</p>
+      <p>START</p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PokemonPage Component debe de hacer match con el snapshot cuando cargan los pokemons 1`] = `
+<div class="gameboy">
+  <div class="screen-black"></div>
+  <div class="screen-cristal"></div>
+  <pokemon-point-stub pokemonscore1="0" pokemonscore2="0" pokemonscore3="0" showcounter3="false"></pokemon-point-stub>
+  <div class="img-container">
+    <h1>¿Quién es este pokémon?</h1>
+    <pokemon-picture-stub pokemonid="1" showpokemon="false"></pokemon-picture-stub>
+    <div class="directionButtons">
+      <div class="button-left">◀ </div>
+      <div class="button-top">▲</div>
+      <div class="button-right">▶</div>
+      <div class="button-bottom">▼</div>
+      <div class="button-center">⬤</div>
+    </div>
+    <div class="buttonA">A</div>
+    <div class="buttonB">B</div>
+    <pokemon-options-stub pokemons="[object Object],[object Object],[object Object],[object Object]"></pokemon-options-stub>
+    <!--v-if-->
+    <div class="button-start"></div>
+    <div class="button-select"></div>
+    <div class="button-select-start">
+      <p>SELECT</p>
+      <p>START</p>
+    </div>
+  </div>
+</div>
+`;

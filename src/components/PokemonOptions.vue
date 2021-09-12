@@ -28,15 +28,17 @@ export default {
 
 ul {
   list-style-type: none;
+  position: absolute;
+  margin: 50%;
 }
 li {
   background-color: white;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  margin-left: -200px;
-  margin-bottom: 10px;
-  width: 250px;
+  width: 290px;
+  height: 30px;
+  font-size: 1.5rem;
 }
 
 li:hover {
@@ -49,21 +51,6 @@ li:hover {
   height: 300%;
   margin-top: 180px;
 }
-
-
-@media (max-width: 800px) {
-  ul {
-    margin: 10px 0px 0px -90px;
-  }
-}
-
-@media (max-width: 400px) {
-  ul {
-    margin-right: -265px;
-    margin-bottom: 20px;
-  }
-}
-
 
 
 </style>
