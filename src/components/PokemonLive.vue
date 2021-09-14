@@ -31,12 +31,11 @@ ul {
 .live {
     display: flex;
     position: inherit;
+    margin-right: 33%;
     margin-top: -22%;
     margin-left: 65%;
     padding:  0px 5px;
     color: rgba(255, 0, 0, 0.541);
-    
-    z-index: 1;
 }
 
 

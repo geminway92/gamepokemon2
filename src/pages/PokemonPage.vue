@@ -2,10 +2,13 @@
 
 <div class="gameboy">
 
-      <ShowPlayer
+  <ShowPlayer
     :playerPoint="playerFirebase"
-    :disabledTopPlayer="disabledTopPlayer"
-    :registerPlayer="registerPlayer"/>
+    :openScoredModal="openScoredModal"
+    :registerPlayer="registerPlayer"
+    @postPlayerfire="postPlayerfire"
+    :registerName="registerName"
+    :hiddenBottonModal="hiddenBottonModal"/>
 
   <div class="screen-black"></div>
   <div class="screen-cristal"></div>
@@ -104,8 +107,10 @@ export default {
       disabledOptions: false,
       lives: 3,
       playerFirebase: [],
-      disabledTopPlayer: false,
-      registerPlayer: false
+      openScoredModal: false,
+      registerPlayer: false,
+      registerName: null,
+      hiddenBottonModal: false,
     }
   },
   
@@ -145,8 +150,17 @@ export default {
     nextPokemon(isResetGame) {
   
       if(isResetGame) {
-        this.lives = 3;
-        this.pokemonPoint = 0
+        if( this.pokemonPoint > 0 ) {
+          
+          this.openScoredModal = true
+          this.hiddenBottonModal = true
+          this.registerPlayer = true
+
+
+        } else {
+          this.lives = 3;
+          this.pokemonPoint = 0
+        }
       }
 
       this.showPokemon = false
@@ -160,17 +174,7 @@ export default {
       
       if( this.disabledOptions === false) {
 
-        this.record()
-        
         this.pokemonPoint++
-      }
-    },
-
-    record() {
-      if( this.pokemonPoint === 500 ) {
-
-        prompt('Que máquina eres Bro!!', 'Lo sé')
-        
       }
     },
 
@@ -179,26 +183,89 @@ export default {
       this.disabledOptions = false
     },
 
-    async getPlayerfire() {
-      const {data} = await pointPlayerApi.get('/player.json')
-    
-      this.playerFirebase =  data
+    async getPlayerfire(  ) {
+      const {data} = await pointPlayerApi.get('/player.json' )
 
-      console.log(this.playerFirebase)
+      if ( !data ) {
+        this.playerFirebase = []
+        return
+      }
+      
+        for ( let id of Object.keys( data )) {
+          this.playerFirebase.push({
+            id,
+            ...data[id]
+          })
+        }
+
+      this.orderPoint()
 
     },
 
-    // async postPlayerfire() {
+    orderPoint() {
+      this.playerFirebase.sort( (a,b) => b.point - a.point)
+  
+    },
       
-    // }
+    async postPlayerfire( nameUser ) {
 
+
+      this.openScoredModal = !this.openScoredModal
+
+      const newPlayerRecord = {
+        name: nameUser,
+        point: this.pokemonPoint
+      }
+       
+      this.openScoredModal = !this.openScoredModal
+      this.registerPlayer = !this.registerPlayer
+
+      
+      this.registerName = null
+
+    
+      
+      this.playerFirebase.push( newPlayerRecord )
+      this.deleteLastPlayer()
+      const {data} = await pointPlayerApi.post('/player.json',newPlayerRecord)
+      this.orderPoint()
+
+
+      this.hiddenBottonModal = false
+
+      this.lives = 3;
+      this.pokemonPoint = 0
+       
+    },
+
+
+    async deleteLastPlayer( ) {
+
+      if( this.playerFirebase.length > 4 ) {
+        
+        // Selecciona el penúltimo elemento del array
+        const id = this.playerFirebase[ this.playerFirebase.length-2].id
+
+        await pointPlayerApi.delete(`/player/${id}.json`)
+        
+        this.playerFirebase = []
+        this.getPlayerfire()
+        
+        
+
+      }
+      return
+
+    }
     
 
   },
-
-  created(){
+  
+  created() {
     this.getPlayerfire()
+
   },
+
 
   mounted() {
     this.mixPokemonArray()
@@ -233,7 +300,7 @@ export default {
   margin-right: 33%;
   margin-top: 0%;
   gap: 5px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .screen-black {
@@ -268,7 +335,6 @@ export default {
   position: absolute;
   margin-left: 100px;
   font-size: 20px;
-  z-index: 1;
 }
 
 .directionButtons {
@@ -370,10 +436,24 @@ p {
 
 @media (min-width: 524px){
 
+
 .gameboy{
   width: 500px;
-  height:740px;
-  margin-left: 70px;
+  height:700px;
+  transform:translate(20px);
+  margin: 0;
+}
+
+.directionButtons {
+  margin-top: 130px;
+}
+
+.buttonA {
+  margin-top: 120px;
+}
+
+.buttonB {
+  margin-top: 150px;
 }
 
 }
@@ -401,7 +481,7 @@ p {
 
 @media(min-width: 1136px) {
   .gameboy {
-    margin-left: 300px;
+    margin-left: 320px;
 
   }
 }
@@ -416,8 +496,14 @@ p {
 @media(min-width: 1408px) {
   .gameboy {
     margin-top: 10px;
-    margin-left: 600px;
+    margin-left: 500px;
 
+  }
+}
+
+@media(min-width: 1500px) {
+  .gameboy{
+    margin-left: 35%;
   }
 }
 

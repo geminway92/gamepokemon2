@@ -53,4 +53,13 @@ li:hover {
 }
 
 
+@media (min-width: 524px) {
+
+.options-container{
+  margin-top: 150px;
+
+}
+
+}
+
 </style>
