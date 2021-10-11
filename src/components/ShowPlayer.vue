@@ -9,7 +9,7 @@
     <h1>PUNTUACIÓN</h1>
   <ul>
       <li v-for="item in playerPoint"
-            :key="item">  Nombre: <span class="name-player">{{item.name}} </span> Puntos: <span class="point-player">{{item.point}} <hr></span>
+            :key="item"> <div class="title-score"> Nombre: <span class="content-score">{{item.name}} </span> </div>  <div class="title-score">  Puntos: <span class="content-score"> {{item.point}}</span> </div> 
             </li>
   </ul>
   <button v-if="!hiddenBottonModal" @click="openScoredModal = !openScoredModal">Ocultar</button>
@@ -20,6 +20,7 @@
                 type="text"
                 placeholder="Escribe tu nombre"
                 v-model="registerName"
+                maxlength="10"
             >
             <button @click="$emit ('postPlayerfire', registerName )" type="submit" >Registrar</button>
       
@@ -59,56 +60,117 @@ ul {
 }
 
 li{
+    display: flex;
     margin-top: 5px;
     font-size: 1rem;
     color: white;
-    margin-right: 15%; 
+    margin-right: 70px; 
+    margin-top: 15px;
+    justify-content:space-between;
 }
 
 h1 {
     color: white;
 }
 .showplayer-container{
-    background-color: grey;
     position: absolute;
-    z-index: 4;
-    width: 390px;
-    height: 320px;
-    transform: translate(45px);
-    border: 1px solid black;
-    margin-top: 20px;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
-    animation-name: expand-show-player;
-    
-
+    background-color: #CCCCCC;
+    position: absolute;
+    width: 100%;
+    height: 650px;
+    border: 1px solid CCCCCC;
+    box-shadow: 6px 5px 15px;
+    top: 0em;
+    z-index: 2;
+    padding-bottom: 1.5em;
 }
 
 .show-button-alway-container {
-   transform: translate(210px, 0px);
-   position: absolute;
+    position: absolute;
+    left: 9em;
+    top: 1em;
 }
 
-.name-player {
-    color: black;
-    margin-left: 5%;
-    padding-right: 10%;
-}
-.point-player {
-    color: black;
-    margin-left: 5%;
+.title-score {
+    color: #777777;
+    font-size: 1rem;
 }
 
-@keyframes expand-show-player{
-    from {
-        
-        height: 320px;
-        transform: translate(45px);
+.content-score {
+    color: #E81123;
+    font-size: 1rem;
+    margin-left: 10px;
+}
 
+@media screen and (width: 320px) {
+    .show-button-alway-container {
+        left: 8em;
     }
 
-    to {
-        height: 650px;
+    li {
+        position: relative;
+        margin: 0;
+        right: 1.5em;
+    }
+}
+
+@media screen and (min-width: 400px) {
+  .show-button-alway-container {
+      transform: translateX(35px);
+  }
+}
+
+@media screen and (min-width: 700px) {
+    .show-button-alway-container {
+        transform: translate(220px, 50px);
+    }
+
+    .showplayer-container {
+        transform: translate(100px);
+        width: 600px;
+        height: 80%;
+    }
+    .title-score {
+        font-size: 1.5em;
+    }
+
+    .content-score {
+        font-size: 1em;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+
+
+    .show-button-alway-container {
+        transform: translate(490px, 50px);
+    }
+
+    .showplayer-container {
+        transform: translate(390px, 50px);
+        width: 520px;
+        height: 100%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .show-button-alway-container {
+        transform: translate(510px, 50px);
+    }
+    
+    .showplayer-container {
+        width: 600px;
+        transform: translate(400px, 50px);
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .show-button-alway-container {
+        transform: translate(800px, 45px);
+    }
+
+    .showplayer-container {
+        transform: translateX(690px);
+        height: 75%;
     }
 }
 

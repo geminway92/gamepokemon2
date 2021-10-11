@@ -2,6 +2,9 @@
 
 <div class="gameboy">
 
+
+  </div>
+    
   <ShowPlayer
     :playerPoint="playerFirebase"
     :openScoredModal="openScoredModal"
@@ -10,63 +13,67 @@
     :registerName="registerName"
     :hiddenBottonModal="hiddenBottonModal"/>
 
-  <div class="screen-black"></div>
-  <div class="screen-cristal"></div>
-
-  <div class="point-live">
-    <div class="point">
-      <PokemonPoint
-        :pokemonScore="pokemonPoint"
-      />
-    </div>
-    <div class="live">
-      <PokemonLive
-      :lives="lives"/>  
-      
-    </div>
-
-  </div>
-
-  <h1 class="wait-message" v-if="!pokemon">Espere por favor...</h1>
-
-  <div class="img-container" v-else>
-    <h1>¿Quién es este pokémon?</h1>
-
-    <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
-  </div>
-  
-  <div v-if="showAnswer">
-      <PokemonAlert
-        :activeColor="activeColor"
-        :message="message"
-        @nextPokemon="nextPokemon(false)"
-        @newGame="nextPokemon(true)"
-        :lives="lives"/>
-  </div>
-
-  <div class="allbuttoms">
-    <div class="directionButtons">
-        <div class="button-left">◀ </div>
-        <div class="button-top">▲</div>
-        <div class="button-right">▶</div>
-        <div class="button-bottom">▼</div>
-        <div class="button-center">⬤</div>
+  <div class="screen-black">
+    <div class="point-live">
+      <div class="point">
+        <PokemonPoint
+          :pokemonScore="pokemonPoint"
+        />
       </div>
-    
-      <div class="buttonA">A</div>
-      <div class="buttonB">B</div>
+      <div class="live">
+        <PokemonLive
+        :lives="lives"/>  
+        
+      </div>
+    <div class="screen-cristal">
+      <h1 class="wait-message" v-if="!pokemon">Espere por favor...</h1>
 
-    <PokemonOptions :pokemons="pokemonArr" @selection="checkAnswer($event)" />
+      <div class="img-container" v-else>
+        <h1>¿Quién es este pokémon?</h1>
 
-    <div class="button-start">
-      <p>START</p>
-    </div>
-
-    <div class="button-select">
-          <p>SELECT</p>
+        <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
+      </div>
     </div>
   </div>
 
+
+  
+  <div class="container-buttons">
+
+    <div v-if="showAnswer">
+        <PokemonAlert
+          :activeColor="activeColor"
+          :message="message"
+          @nextPokemon="nextPokemon(false)"
+          @newGame="nextPokemon(true)"
+          :lives="lives"/>
+    </div>
+    <div class="directionButtons">
+        <div class="button-left"></div>
+        <div class="button-top"></div>
+        <div class="button-right"></div>
+        <div class="button-bottom"></div>
+        <div class="button-center"></div>
+      </div>
+
+      <div class="buttons-AB">
+        <div class="buttonA">A</div>
+        <div class="buttonB">B</div>
+      </div>
+
+      <PokemonOptions :pokemons="pokemonArr" @selection="checkAnswer($event)" />
+    <div class="button-select-container">
+      <div class="button-start">
+        <p>START</p>
+      </div>
+
+      <div class="button-select">
+            <p>SELECT</p>
+      </div>
+    </div> 
+    
+
+  </div>
 </div>
 
 
@@ -170,6 +177,9 @@ export default {
       this.mixPokemonArray()
       this.disabledOptions = false
     },
+
+
+
     sumPoint() {
       
       if( this.disabledOptions === false) {
@@ -230,11 +240,10 @@ export default {
       const {data} = await pointPlayerApi.post('/player.json',newPlayerRecord)
       this.orderPoint()
 
-
-      this.hiddenBottonModal = false
-
       this.lives = 3;
       this.pokemonPoint = 0
+      this.hiddenBottonModal = false
+      
        
     },
 
@@ -279,232 +288,427 @@ export default {
 
 
 .gameboy {
-  position: absolute;
+  display: flex;
   background-color: rgb(223, 223, 37);
-  height: 730px;
-  width: 500px;
+  flex-direction: column;
+  justify-content: start;
+  /* min-width: 100vw; */
+  min-height: 700px;
   border-radius: 1rem;
-  margin: 5% 0%;
-  /* transform: translate(630px); */
 }
 
 .point-live {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
-}
-.point {
-  margin-left: 50px;
-}
-.live {
-  margin-right: 33%;
-  margin-top: 0%;
-  gap: 5px;
-  z-index: 2;
+  width: 100%;
+  height: min-content;
 }
 
+ 
 .screen-black {
   position: absolute;
-  width: 400px;
-  height: 45%;
+  width: 80%;
+  height: 38%;
   background-color: black;
-  transform: translate(50px, 25px);
+  top: 3em;
+  left: 2.8em;
+
 }
 
 .screen-cristal {
-  position: absolute;
-  width: 340px;
-  height: 290px;
+  position: relative;
+  width: 80%;
+  height: 80%;
   background-color: grey;
-  transform: translate(80px, 40px);
-
+  top: 1.5em;
+  left: 2em;
 }
 
-.img-container {
-  position: absolute;
-  width: 500px;
-}
 
-.img-container h1 {
-  font-size: 100%;
-  z-index: 1;
-  margin-right: 15px;
+.img-container h1,
+.wait-message {
+  font-size: 1em;
+  position: relative;
+  top: 1.5em;
+  margin: auto;
 }
 
 .wait-message {
-  position: absolute;
-  margin-left: 100px;
-  font-size: 20px;
+  height: 200px;
 }
+
+.container-buttons {
+  position: absolute;
+  width: 100%;
+  height: min-content;
+  top: 19em;
+  left: .1em;
+}
+
 
 .directionButtons {
   position: absolute;
-  color: rgb(30, 30, 129);
-  margin: 25% 15%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .button-left {
-  position: absolute;
-  background-color: blue;
-  width: 40px;
-  height: 40px;
-  margin-left: -40px;
-  margin-top: 40px;
-  font-size: 2rem;
+  width: 35px;
+  height: 35px;
+  border: 4px solid var(--button-blue);
+  box-shadow: 0px 5px 5px #2E3345;
+  border-top-color: #616D92;
+  background-color: var(--button-blue);
+  cursor: pointer;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.button-left:active {
+  border-top-color: var(--button-blue);
+  box-shadow: none;
 }
 
 .button-top {
-  position: absolute;
-  background-color: blue;
-  width: 40px;
-  height: 40px;
-   font-size: 2rem;
+  background-color: var(--button-blue);
+  border: 4px solid var(--button-blue);
+  border-top-color: #616D92;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  grid-column: 2;
 }
+
+.button-top:active {
+  border-top-color: var(--button-blue);
+}
+
 .button-right {
-  position: absolute;
-  background-color: blue;
-  width: 40px;
-  height: 40px;
-  margin-left: 40px;
-  margin-top: 40px;
-  font-size: 2rem;
-  
+  position: relative;
+  background-color: var(--button-blue);
+  border: 4px solid var(--button-blue);
+  box-shadow: 0px 5px 5px #2E3345;
+  border-top-color: #616D92;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  grid-column: 3;
+  grid-row: 2;
 }
+
+.button-right:active {
+  border-top-color: var(--button-blue);
+  box-shadow: none;
+}
+
 .button-bottom {
-  position: absolute;
-  background-color: blue;
-  width: 40px;
-  height: 40px;
-  margin-top: 80px;
-   font-size: 2rem;
+  background-color: var(--button-blue);
+  box-shadow: 0px 5px 5px #2E3345;
+  width: 35px;
+  border: 4px solid var(--button-blue);
+  height: 35px;
+  cursor: pointer;
+  grid-column: 2;
+  grid-row: 3;
 }
+
+.button-bottom:active {
+  box-shadow: none;
+}
+
 .button-center {
+  background-color: var(--button-blue);
+  border: 4px solid var(--button-blue);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  grid-column: 2;
+  grid-row: 2;
   position: absolute;
-  background-color: blue;
-  width: 40px;
-  height: 45px;
-  margin-top: 35px;
-  font-size: 2rem;
-  
 }
-.buttonA {
+
+.buttons-AB {
   position: absolute;
-  background-color: green;
-  border: 1px solid black;
+  display: flex;
+  width: 50%;
+  height: min-content;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 10% 58%;
+}
+
+.buttonA {
+  background-color: #05A05F;
+  border-top: 4px solid #3ABC86;
   border-radius: 100%;
   font-size: 2rem;
   height: 40px;
   width: 40px;
   padding: 1%;
-  margin: 25% 75%;
-  
+  cursor: pointer;
 } 
 
+.buttonA:active {
+  border-top: #05A05F;
+}
+
 .buttonB {
-  position: absolute;
-  background-color: red;
-  border: 1px solid black;
+  position: relative;
+  background-color: #E61631;
+  border-top: 4px solid #EF2B47;
   border-radius: 100%;
   font-size: 2rem;
   height: 40px;
   padding: 1%;
   width: 40px;
-  margin: 35% 61%;
+  cursor: pointer;
+  bottom: .5em;
+}
+
+.buttonB:active {
+  border-top: #E61631;
+}
+
+.button-select-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: min-content;
+  height: 40px;
+  top: 18em;
+  left: 6em;
 }
 
 .button-start {
-  position: absolute;
   width: 40px;
   height: 10px;
   border-radius: 100%;
+  border: 2px solid;
+  border-top-color: #F8F7F7;
   background-color: black;
-  margin: 83% 60%;
+  margin-right: 1.5em;
+  font-size: .7em;
 }
 
 .button-select {
-  position: absolute;
   width: 40px;
   height: 10px;
   border-radius: 100%;
   background-color: black;
-  margin: 83% 40%;
+  font-size: .7em;
+  border: 2px solid;
+  border-top-color: #F8F7F7;
 }
 
-p {
-  margin-left: -10%;
+.button-start:active, 
+.button-select:active {
+  border-top-color: black;
+}
+@media screen and (width: 320px) {
+ 
+ .gameboy {
+   max-width: 100vw;
+   min-height: 550px;
+ }
+
+.screen-black {
+  width: 90%;
+  height: 50%;
+  top: 3em;
+  left: 1.5em;
+
 }
 
-@media (min-width: 524px){
-
-
-.gameboy{
-  width: 500px;
-  height:700px;
-  transform:translate(20px);
-  margin: 0;
+.screen-cristal {
+  width: 80%;
+  height: 180px;
+  background-color: grey;
 }
 
 .directionButtons {
-  margin-top: 130px;
+  margin: 0;
+  transform: translate(1.5em, -4em);
 }
 
-.buttonA {
-  margin-top: 120px;
+.button-top,
+.button-left,
+.button-right,
+.button-top,
+.button-center,
+.button-bottom {
+  width: 20px;
+  height: 20px;
 }
 
+.buttons-AB {
+  transform: translate(-1.5em, -4em);
+}
+
+.buttonA,
 .buttonB {
-  margin-top: 150px;
+  width: 25px;
+  height: 25px;
+  font-size: 1em;
+}
+
+.button-select-container {
+  top: 11em;
 }
 
 }
 
-@media(min-width: 760px) {
+@media screen and (width: 360px) and (max-height: 780px) {
   .gameboy {
-    margin-left: 150px;
+    min-height: 660px;
+  }
 
+  .directionButtons{
+    transform: translateY(-30px);
+  }
+  
+  .button-top,
+  .button-left,
+  .button-right,
+  .button-top,
+  .button-center,
+  .button-bottom {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .buttonA,
+  .buttonB {
+    width: 30px;
+    height: 30px;
+    font-size: 1em;
+  }
+
+
+  .buttons-AB {
+    transform: translateY(-40px);
+  }
+  
+  .button-select-container {
+    transform: translateY( -20px);
   }
 }
 
-@media(min-width: 858px) {
+@media screen and (min-width: 400px) {
+
+  .directionButtons {
+    transform: translatey(20px);
+  }
+  .button-select-container {
+    transform: translate( 20px, 20px);
+  }
+}
+
+@media screen and (min-width: 700px){
+   .gameboy {
+   width: 600px;
+   min-height: 850px;
+   margin: 0% 10%;
+   transform: translate(15px, 50px);
+ }
+  
+  .screen-black {
+    width: 460px;
+    margin-left: 100px;
+    transform: translate(35px, 50px);
+  }
+  
+  .screen-cristal {
+    width: 390px;
+    height: 300px;
+  }
+
+  .directionButtons {
+    transform: translateY(60px);
+  }
+  .buttons-AB {
+    transform: translate(-20px, 40px);
+  }
+
+  .button-select-container {
+    transform: translate(90px, 170px);
+  }
+
+
+}
+
+@media screen and (min-width: 800px)  {
+
   .gameboy {
-    margin-left: 180px;
-
+    min-height: 930px;
   }
+  .directionButtons {
+    transform: translateY(150px);
+  }
+  .buttons-AB {
+    transform: translate(-20px, 130px);
+  }
+
+  .button-select-container {
+    transform: translate(90px, 170px);
+  }
+
 }
 
-@media(min-width: 966px) {
+@media screen and (min-width: 1000px) {
+    .gameboy {
+      width: 500px;
+      min-height: 680px;
+      margin-left: 10%;
+      transform: translate(275px, 50px);
+    }
+
+    .screen-black {
+      width: 400px;
+      height: 260px;
+      transform: translate(340px, 50px);
+    }
+
+    .screen-cristal {
+      width: 340px;
+      height:200px;
+    }
+
+    .directionButtons {
+      transform: translate( 20px, -15px);
+      margin-left: 0;
+    }
+    
+    .buttons-AB {
+      transform: translate( -15px, -40px);
+    }
+
+    .button-select-container {
+      transform: translate(50px, 10px);
+    }
+}
+
+@media screen and (min-width: 1200px) {
   .gameboy {
-    margin-left: 250px;
-
+      width: 550px;
+      transform: translate(290px, 50px);
   }
-}
 
-@media(min-width: 1136px) {
+  .screen-black {
+    transform: translate(365px, 50px);
+  }
+  .container-buttons {
+    transform: translate(0px);
+  }
+
+
+}
+@media screen and (min-width: 1900px) {
   .gameboy {
-    margin-left: 320px;
-
+    transform: translate(500px, 40px);
   }
-}
-
-@media(min-width: 1308px) {
-  .gameboy {
-    margin-left: 400px;
-
+  
+  .screen-black {
+    transform: translate(630px, 40px);
   }
+  
 }
-
-@media(min-width: 1408px) {
-  .gameboy {
-    margin-top: 10px;
-    margin-left: 500px;
-
-  }
-}
-
-@media(min-width: 1500px) {
-  .gameboy{
-    margin-left: 35%;
-  }
-}
-
 </style>

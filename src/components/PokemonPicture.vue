@@ -43,20 +43,36 @@ export default {
 /* Pokemon Picture */
 
 .pokemon-container {
-  height: 200px;
+  height: 150px;
 }
 img {
-  height: 80%;
-  margin-top: 5%;
+  height: 60%;
+  margin-top: 15%;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
+
 }
 .hidden-pokemon {
   filter: brightness(0);
 }
 
+@media screen and (width: 320px) {
+  img{
+    height: 40%;
+  }
+}
 
+
+@media screen and (min-width: 400px) {
+  
+  .pokemon-container {
+    height: 200px;
+  }
+  img {
+    height: 60%;
+  }
+}
 </style>

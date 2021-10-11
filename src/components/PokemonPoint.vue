@@ -1,11 +1,7 @@
 <template>
     <div class="score-container">
         <h1>PUNTOS:</h1>
-
-        <div class="scored">
         <p>{{pokemonScore}}</p>
-
-        </div>
     </div>
 </template>
 
@@ -26,21 +22,23 @@ export default {
 .score-container {
     position: absolute;
     display: flex;
-    height: 25%;
-    margin-left: 10% ;
-    margin-top: -8px;
+    width: 40%;
+    height: 2.5em;
+    flex-direction:row;
+    top: 1.2em;
+    left: 2.2em;
+    z-index: 1;
+    gap: .3em;
 }
 
-.score-container p{
-    font-size: 19px;
- 
+
+p{
+    bottom: .7em;
+    position: relative;
+    font-size: 1.2em;
 }
 
-.scored {
-    margin-top: -13px;
-    margin-left: 10px;
-    
-}
+
 .score-container h1 {
     font-size: 14px;
 }

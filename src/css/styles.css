@@ -1,18 +1,15 @@
-html,body {
-    background-color: rgb(223, 223, 37);
+
+:root {
+    --button-blue: #243E92;
 }
 
-
-@media (min-width: 540px) {
-    html, body {
+@media screen and (min-width: 320px) {
+    html, #app {
         background-color: rgb(212, 211, 211);
         margin: 0;
+        width: 100vw;
+        height: 100vh;
     }
 }
 
 
-@media (min-width: 330px) {
-    html, body {
-        background-color: rgb(212, 211, 211);
-    }
-}
