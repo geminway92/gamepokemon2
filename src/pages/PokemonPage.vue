@@ -688,12 +688,12 @@ export default {
 
 @media screen and (min-width: 1200px) {
   .gameboy {
-      width: 550px;
-      transform: translate(290px, 50px);
+      width: 640px;
+      transform: translate(270px, 50px);
   }
 
   .screen-black {
-    transform: translate(365px, 50px);
+    transform: translate(380px, 50px);
   }
   .container-buttons {
     transform: translate(0px);
@@ -701,13 +701,20 @@ export default {
 
 
 }
+
+@media screen and (min-width: 1400px) {
+  .gameboy {
+    width: 580px;
+  }
+}
 @media screen and (min-width: 1900px) {
   .gameboy {
+    width: 590px;
     transform: translate(500px, 40px);
   }
   
   .screen-black {
-    transform: translate(630px, 40px);
+    transform: translate(650px, 40px);
   }
   
 }

@@ -158,8 +158,12 @@ h1 {
     }
     
     .showplayer-container {
-        width: 600px;
+        width: 630px;
         transform: translate(400px, 50px);
+    }
+
+    .title-score {
+        font-size: 1em;
     }
 }
 
@@ -172,6 +176,7 @@ h1 {
         transform: translateX(690px);
         height: 75%;
     }
+    
 }
 
 
